@@ -6,6 +6,9 @@ Simple Task management using Laravel + Vuejs. Currently, it divides into two ind
 
 
 ## Features
+- Laravel 8
+- Vuejs
+- Laradock
 - User (Register, Login)
 - Laravel Seeder
 - Multiple Task list
@@ -13,14 +16,12 @@ Simple Task management using Laravel + Vuejs. Currently, it divides into two ind
 - Task (Create, Edit, Delete)
 - Last hour tasks statictic chart
 - PhpUnit
-- Vuejs
 - Postman for testing API
 
 ![Image](dev_resources/screenshots/tast-list01.png "Task List")
 
 
 ## Todo features:
-- Laradock
 - Google Login
 - HTTPS localhost
 - Deploy to production
@@ -36,13 +37,31 @@ Simple Task management using Laravel + Vuejs. Currently, it divides into two ind
 - Combine Laravel + Vuejs into one project using laravel ui
 
 ## Setup
+
+
+
 ### Laravel
+#### Laravel with docker
 Under project root folder, run below commands.
 ```
 cp .env.example .env
+cp laradock/env-example laradock/.env
+```
+Edit laradock/.env, for example  
+PS: Mysql port set to, using this port when you would like to connect to Mysql on localhost.
+```
+### MYSQL #################################################
+
+MYSQL_VERSION=5.7.25
+MYSQL_DATABASE=lrv_task_list
+MYSQL_USER=derek
+MYSQL_PASSWORD=derek
+MYSQL_PORT=15106
+MYSQL_ROOT_PASSWORD=root
+MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
 ```
 
-Set .env, especially these fields, SANCTUM_STATEFUL_DOMAINS, SPA_URL are related to Vuejs project.
+Edit .env, especially these fields, SANCTUM_STATEFUL_DOMAINS, SPA_URL are related to Vuejs project.
 ```
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -52,6 +71,16 @@ DB_PASSWORD=
 SANCTUM_STATEFUL_DOMAINS=localhost:8080
 SESSION_DOMAIN=localhost
 SPA_URL=http://localhost:8080
+```
+
+To start nginx, mysql using docker, run below commands.
+```
+docker-compose up -d nginx mysql workspace 
+```
+
+SSH to workspace project
+```
+docker-compose exec workspace bash
 ```
 
 Run below commands.
@@ -97,6 +126,11 @@ password: derek
 #### Postman
 There is a postman file for testing APIs  
 [Postman file](dev_resources/task-list.postman_collection.json )
+Set environment varibles:  
+api_base_url: http://localhost  
+referer: http://localhost:8080  
+
+
 
 ## Skills
 - Laravel 8
