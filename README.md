@@ -44,7 +44,7 @@ Simple Task management using Laravel + Vuejs. Currently, it divides into two ind
 #### Laravel with docker
 Under project root folder, run below commands.
 ```
-cp .env.example .env
+cp .env.dev .env
 cp laradock/env-example laradock/.env
 ```
 Edit laradock/.env, for example  
