@@ -53,9 +53,9 @@ PS: Mysql port set to, using this port when you would like to connect to Mysql o
 ### MYSQL #################################################
 
 MYSQL_VERSION=5.7.25
-MYSQL_DATABASE=lrv_task_list
-MYSQL_USER=derek
-MYSQL_PASSWORD=derek
+MYSQL_DATABASE=default
+MYSQL_USER=default
+MYSQL_PASSWORD=secret
 MYSQL_PORT=15106
 MYSQL_ROOT_PASSWORD=root
 MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
