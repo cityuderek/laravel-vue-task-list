@@ -33,7 +33,7 @@ COMPOSE_FILE=docker-compose.yml
 COMPOSE_PATH_SEPARATOR=:
 
 # Define the prefix of container names. This is useful if you have multiple projects that use laradock to have separate containers per project.
-COMPOSE_PROJECT_NAME=laradock
+COMPOSE_PROJECT_NAME=laravel-vue-task-list
 
 ### PHP Version ###########################################
 
@@ -975,7 +975,7 @@ GEARMAN_WORKER_WAKEUP=0
 GEARMAN_KEEPALIVE=0
 # The duration between two keepalive transmissions in idle condition (Default: 30)
 GEARMAN_KEEPALIVE_IDLE=30
-# The duration between two successive keepalive retransmissions, if acknowledgement to the previous keepalive transmission is not received	(Default: 10)
+# The duration between two successive keepalive retransmissions, if acknowledgement to the previous keepalive transmission is not received  (Default: 10)
 GEARMAN_KEEPALIVE_INTERVAL=10
 # The number of retransmissions to be carried out before declaring that remote end is not available (Default: 5)
 GEARMAN_KEEPALIVE_COUNT=5
