@@ -130,6 +130,15 @@ Set environment varibles:
 api_base_url: http://localhost  
 referer: http://localhost:8080  
 
+## Error
+If something wrong about laravel, try to run below commands to clear Laravel cache.
+```
+docker-compose exec workspace bash
+php artisan view:clear;
+php artisan config:clear;
+php artisan cache:clear;
+```
+
 
 
 ## Skills
