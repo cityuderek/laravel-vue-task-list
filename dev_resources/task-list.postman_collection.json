@@ -12,15 +12,17 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
+							"const api_base_url = pm.environment.get('api_base_url');",
 							"pm.sendRequest({",
-							"    url: 'http://localhost:8000/sanctum/csrf-cookie',",
+							"    url: api_base_url + '/sanctum/csrf-cookie',",
 							"    method: 'GET'",
 							"}, function (error, response, { cookies }) {",
 							"    if (!error) {",
-							"        console.log('XSRF-TOKEN=', cookies.get('XSRF-TOKEN'));",
+							"        //console.log('XSRF-TOKEN=', cookies.get('XSRF-TOKEN'));",
 							"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'));",
 							"    }",
-							"})"
+							"})",
+							"// {{api_domain}}"
 						],
 						"type": "text/javascript"
 					}
@@ -50,62 +52,12 @@
 					"raw": "{\"email\":\"dereklam306@gmail.com\",\"password\":\"derek\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/login",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/login",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getMessages",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json, text/plain, */*",
-						"type": "text"
-					},
-					{
-						"key": "X-XSRF-TOKEN",
-						"value": "{{xsrf-token}}",
-						"type": "text"
-					},
-					{
-						"key": "Referer",
-						"value": "http://localhost:8080",
-						"type": "text"
-					},
-					{
-						"key": "Origin",
-						"value": "http://localhost:8080",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8000/api/messages/?page=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"messages",
-						""
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "1"
-						}
 					]
 				}
 			},
@@ -128,22 +80,20 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/tasks/",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/tasks/",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -170,7 +120,7 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
@@ -181,12 +131,10 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/task_lists/one_hour_stat/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/task_lists/one_hour_stat/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -214,22 +162,20 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/task_lists/",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/task_lists/",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -256,7 +202,7 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
@@ -276,12 +222,10 @@
 					"raw": "{\n    \"task_list_id\": 2,\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/tasks",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/tasks",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"tasks"
@@ -307,7 +251,7 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
@@ -327,12 +271,10 @@
 					"raw": "{\n    \"task_id\": 2,\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/tasks/set_done/1/true",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/tasks/set_done/1/true",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -361,7 +303,7 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
@@ -381,12 +323,10 @@
 					"raw": "{\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/task_lists",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/task_lists",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"task_lists"
@@ -412,12 +352,12 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
@@ -431,12 +371,10 @@
 					"raw": "{\n    \"title\": \"edit title {{$timestamp}}\",\n    \"description\": \"edit description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/tasks/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/tasks/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -463,12 +401,12 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
@@ -482,12 +420,10 @@
 					"raw": "{\n    \"title\": \"title edit {{$timestamp}}\",\n    \"description\": \"description edit {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/task_lists/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/task_lists/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -514,22 +450,20 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/tasks/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/tasks/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -556,22 +490,20 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/task_lists/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/task_lists/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -598,22 +530,20 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/users/22",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/users/22",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -640,22 +570,20 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/messages/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/messages/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"messages",
@@ -682,26 +610,38 @@
 					},
 					{
 						"key": "Referer",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					},
 					{
 						"key": "Origin",
-						"value": "http://localhost:8080",
+						"value": "{{referer}}",
 						"type": "text"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/task_lists/1",
-					"protocol": "http",
+					"raw": "{{api_base_url}}/api/task_lists/1",
 					"host": [
-						"localhost"
+						"{{api_base_url}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_base_url}}",
+					"host": [
+						"{{api_base_url}}"
 					]
 				}
 			},
