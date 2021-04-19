@@ -15,6 +15,9 @@ Simple Task management using Laravel + Vuejs. Currently, it divides into two ind
 - PhpUnit
 - Vuejs
 
+![Image](dev_resources/screenshots/tast-list01.png "Task List")
+
+
 ## Todo features:
 - Laradock
 - Google Login
@@ -82,6 +85,11 @@ Use another terminal
 cd laravel-vue
 npm run serve
 ```
+
+### Accounts
+User 1:  
+Email: dereklam306@gmail.com  
+password: derek  
 
 ## Skills
 - Laravel 8
