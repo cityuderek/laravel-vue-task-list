@@ -86,6 +86,7 @@ Use another terminal
 cd laravel-vue
 npm run serve
 ```
+Default URL will be http://localhost:8080/
 
 ### Accounts
 User 1:  

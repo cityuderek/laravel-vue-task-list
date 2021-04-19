@@ -13,7 +13,7 @@
 					"script": {
 						"exec": [
 							"pm.sendRequest({",
-							"    url: 'http://localhost:8001/sanctum/csrf-cookie',",
+							"    url: 'http://localhost:8000/sanctum/csrf-cookie',",
 							"    method: 'GET'",
 							"}, function (error, response, { cookies }) {",
 							"    if (!error) {",
@@ -50,12 +50,12 @@
 					"raw": "{\"email\":\"dereklam306@gmail.com\",\"password\":\"derek\"}"
 				},
 				"url": {
-					"raw": "http://localhost:8001/login",
+					"raw": "http://localhost:8000/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"login"
 					]
@@ -90,12 +90,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/messages/?page=1",
+					"raw": "http://localhost:8000/api/messages/?page=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"messages",
@@ -138,12 +138,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/tasks/",
+					"raw": "http://localhost:8000/api/tasks/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -181,12 +181,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/task_lists/one_hour_stat/1",
+					"raw": "http://localhost:8000/api/task_lists/one_hour_stat/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -224,12 +224,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/task_lists/",
+					"raw": "http://localhost:8000/api/task_lists/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -276,12 +276,12 @@
 					"raw": "{\n    \"task_list_id\": 2,\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/tasks",
+					"raw": "http://localhost:8000/api/tasks",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"tasks"
@@ -327,12 +327,12 @@
 					"raw": "{\n    \"task_id\": 2,\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/tasks/set_done/1/true",
+					"raw": "http://localhost:8000/api/tasks/set_done/1/true",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -381,12 +381,12 @@
 					"raw": "{\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/task_lists",
+					"raw": "http://localhost:8000/api/task_lists",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"task_lists"
@@ -431,12 +431,12 @@
 					"raw": "{\n    \"title\": \"edit title {{$timestamp}}\",\n    \"description\": \"edit description {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/tasks/1",
+					"raw": "http://localhost:8000/api/tasks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -482,12 +482,12 @@
 					"raw": "{\n    \"title\": \"title edit {{$timestamp}}\",\n    \"description\": \"description edit {{$timestamp}}\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8001/api/task_lists/1",
+					"raw": "http://localhost:8000/api/task_lists/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -524,12 +524,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/tasks/1",
+					"raw": "http://localhost:8000/api/tasks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"tasks",
@@ -566,12 +566,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/task_lists/1",
+					"raw": "http://localhost:8000/api/task_lists/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
@@ -608,12 +608,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/users/22",
+					"raw": "http://localhost:8000/api/users/22",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"users",
@@ -650,12 +650,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/messages/1",
+					"raw": "http://localhost:8000/api/messages/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"messages",
@@ -692,12 +692,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8001/api/task_lists/1",
+					"raw": "http://localhost:8000/api/task_lists/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8001",
+					"port": "8000",
 					"path": [
 						"api",
 						"task_lists",
