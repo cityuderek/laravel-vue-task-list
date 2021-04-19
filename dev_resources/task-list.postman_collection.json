@@ -1,0 +1,711 @@
+{
+	"info": {
+		"_postman_id": "233d937a-53d1-41e5-b916-c0284e6388b4",
+		"name": "task-list",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: 'http://localhost:8001/sanctum/csrf-cookie',",
+							"    method: 'GET'",
+							"}, function (error, response, { cookies }) {",
+							"    if (!error) {",
+							"        console.log('XSRF-TOKEN=', cookies.get('XSRF-TOKEN'));",
+							"        pm.environment.set('xsrf-token', cookies.get('XSRF-TOKEN'));",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"dereklam306@gmail.com\",\"password\":\"derek\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8001/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMessages",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/messages/?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"messages",
+						""
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTasks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/tasks/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"tasks",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "one_hour_stat",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/task_lists/one_hour_stat/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"task_lists",
+						"one_hour_stat",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTaskLists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/task_lists/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"task_lists",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTask",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_list_id\": 2,\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/tasks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "setTaskDone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"task_id\": 2,\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/tasks/set_done/1/true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"tasks",
+						"set_done",
+						"1",
+						"true"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createTaskList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"title {{$timestamp}}\",\n    \"description\": \"description {{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/task_lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"task_lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editTask",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"edit title {{$timestamp}}\",\n    \"description\": \"edit description {{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editTaskList",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"title edit {{$timestamp}}\",\n    \"description\": \"description edit {{$timestamp}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8001/api/task_lists/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"task_lists",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTask",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/tasks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"tasks",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTaskList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/task_lists/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"task_lists",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/users/22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"users",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delTask",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/messages/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"messages",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delTaskList",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*",
+						"type": "text"
+					},
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "{{xsrf-token}}",
+						"type": "text"
+					},
+					{
+						"key": "Referer",
+						"value": "http://localhost:8080",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8001/api/task_lists/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"api",
+						"task_lists",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -14,6 +14,7 @@ Simple Task management using Laravel + Vuejs. Currently, it divides into two ind
 - Last hour tasks statictic chart
 - PhpUnit
 - Vuejs
+- Postman for testing API
 
 ![Image](dev_resources/screenshots/tast-list01.png "Task List")
 
@@ -91,14 +92,18 @@ User 1:
 Email: dereklam306@gmail.com  
 password: derek  
 
+### Development
+#### Postman
+There is a postman file for testing APIs  
+[Postman file](dev_resources/task-list.postman_collection.json )
+
 ## Skills
 - Laravel 8
+- VueJs
 - Laravel fortify
 - Laravel sanctum
 - Laravel Seeder
-- VueJs
 - Phpunit
-- Jest
 - Postman
 
 ## Remark
